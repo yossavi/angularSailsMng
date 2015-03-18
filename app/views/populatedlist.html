@@ -1,0 +1,22 @@
+<h1><a ui-sref="mainlist({model: collection, mainid: null, mainpopulate: null, maincollection: null})">{{populate}}</a></h1>
+<span class="badge">{{populateList.length}}</span>
+<table class="table table-hover">
+	<tr ng-repeat="popItem in populateList"><td class="clickable" ui-sref="mainlist.item.itemmodify({model: model, mainid: id, mainpopulate: populate, maincollection: collection, id: popItem.id})"><strong>
+		{{popItem[showNamePop]}}
+	</strong></td><td><button class="btn btn-danger pull-right" ng-click="delete($index)">Delete</button></td></tr>
+</table>
+<form class="form-inline" role="form" ng-submit="add()">
+	<input class="form-control" type="text" placeholder="New {{collection}}" ng-model="newPopItem[showNamePop]" typeahead="item as item[showNamePop] for item in list | filter:{name:$viewValue} | limitTo:8">
+	<button type="submit" class="btn btn-success" >Add</button>
+</form>
+<br />
+<button class="btn btn-xs btn-success" ng-click="filter = 'updatedAt'; reverse=!reverse;">Date</button>
+<button class="btn btn-xs btn-success" ng-click="filter = showNamePop; reverse=!reverse;">Abc</button>
+<input class="form-control" type="text" ng-model="search[showNamePop]" placeholder="Filter List">
+<span class="badge">{{list.length}}</span>
+<table class="table table-hover">
+	<tr ng-repeat="item in list | orderBy: filter: reverse | filter:search"><td class="clickable" ng-click="addFromList(item)"><strong>
+		{{item[showNamePop]}}
+	</strong></td></tr>
+</table>
+

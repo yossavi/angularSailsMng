@@ -1,0 +1,47 @@
+<div flow-init="{target: 'http://yossavi.cloudapp.net/anattour/api/upload/video'}"
+     flow-files-submitted="$flow.upload()"
+     flow-file-added="!!{mp4:1}[$file.getExtension()]"
+     flow-file-success="success($message)">
+	<div class="drop" flow-drop ng-class="dropClass">
+		<span class="btn btn-default" flow-btn>Upload Videos</span>
+		<span class="btn btn-default" flow-btn flow-directory ng-show="$flow.supportDirectory">Upload Folder of Videos</span>
+		<b>OR</b>
+		Drag And Drop your videos here
+	</div>
+	<br/>
+	<div>
+		<div ng-repeat="file in $flow.files" class="gallery-box" ng-hide="file.progress()==1">
+			<span class="title">{{file.name}}</span>
+			<div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+				<div class="progress-bar" role="progressbar"
+				     aria-valuenow="{{file.progress() * 100}}"
+				     aria-valuemin="0"
+				     aria-valuemax="100"
+				     ng-style="{width: (file.progress() * 100) + '%'}">
+					<span class="sr-only">{{file.progress()}}% Complete</span>
+				</div>
+			</div>
+		</div>
+		<span class="badge">{{videos.length}}</span>
+		<div ng-repeat="video in videos | orderBy: 'order'" class="gallery-box">
+			<span class="title"> <a href="" editable-text="video.description" onaftersave="updateDescription(video.id)">{{ video.description || 'empty' }}</a></span>
+			<div class="thumbnail">
+				<a ui-sref="mainlist.item.itemmodify({model: model, mainid: id, mainpopulate: 'videos', maincollection: 'video', id: video.id})">
+					<video width="180" height="180" controls>
+						<source src="{{getVideoUrl(video.id)}}" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+				</a>
+			</div>
+			<div class="btn-group">
+				<a class="btn btn-xs btn-danger" ng-click="delete(video.id)">
+					Delete
+				</a>
+			</div>
+			<button class="btn btn-xs btn-success" clip-copy="getUrl(video.id)">Choose</button>
+			<a href="" editable-text="video.order" onaftersave="updateOrder(video.id)">{{ video.order || 'empty' }}</a>
+			<span class="title"> <a href="" editable-text="video.credit" onaftersave="updateCredit(video.id)">{{ video.credit || 'empty' }}</a></span>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

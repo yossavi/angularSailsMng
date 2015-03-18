@@ -1,0 +1,28 @@
+<div style="position: absolute" ><alert type="success" ng-show="sucess">Saved</alert></div>
+<!--<button type="button" class="btn btn-success btn-block" ng-click="save()">Save Changes</button>-->
+<ul class="list-group">
+	<li class="list-group-item" ng-repeat="(keyDef, valueDef) in definitions" ng-hide="keyDef=='createdAt' || keyDef=='id' || keyDef=='updatedAt' || valueDef.collection || valueDef.model || valueDef.hide">
+		<strong>{{keyDef}}:</strong>
+        <span ng-if="(valueDef.type == 'string' && (valueDef.text == 'short' || valueDef.text == 'show')) || valueDef.type == 'int' || valueDef.type == 'float'">
+            <a href="" editable-text="item[keyDef]">{{ item[keyDef] || 'empty' }}</a>
+        </span>
+        <span ng-if="valueDef.type == 'string' && valueDef.text == 'long'">
+            <a href="" editable-textarea="item[keyDef]" e-rows="7" e-cols="40">
+	            <pre>{{ item[keyDef] || 'no text' }}</pre>
+            </a>
+        </span>
+		<span ng-if="valueDef.type == 'string' && valueDef.text == 'rich'">
+			<textarea ui-tinymce="tinymceOptions" ng-model="item[keyDef]"></textarea>
+			<button type="button" class="btn btn-success btn-block" ng-click="save()">Save Changes</button>
+		</span>
+		<span ng-if="valueDef.type == 'string' && valueDef.text == 'color'">
+			<a href="" editable-color="item[keyDef]">{{ item[keyDef] || 'empty' }}</a>
+		</span>
+        <span ng-if="valueDef.type == 'boolean'">
+	        <button type="button" class="btn btn-primary" ng-model="item[keyDef]" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
+		        {{ item[keyDef] && "yes!" || "no!" }}
+	        </button>
+        </span>
+	</li>
+</ul>
+<button type="button" class="btn btn-success btn-block" ng-click="save()">Save Changes</button>

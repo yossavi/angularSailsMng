@@ -1,0 +1,34 @@
+
+<div class="form-group form-horizontal">
+	<button class="btn btn-success" ng-click="addMarker('start')" ng-disabled="startEndPoints.isstart">Insert start point</button>
+	<button class="btn btn-danger" ng-click="addMarker('end')" ng-disabled="startEndPoints.isend">Insert end point</button>
+	<select class="form-control"
+	        ng-change="addRoute()"
+	        ng-model="pickedColor" ng-options="color.name for color in colors | orderBy: 'name'"
+	        required>
+		<option value="">-- Insert route --</option>
+	</select>
+	<select class="form-control"
+	        ng-change="addMarker('point')"
+	        ng-model="pickedInterestPointCat" ng-options="interestPointCat.name for interestPointCat in interestPointCats | orderBy: 'name'"
+	        required>
+		<option value="">-- Insert interest point --</option>
+	</select>
+	<input id="pac-input" class="form-control " type="text" placeholder="Search a location">
+</div>
+
+<map
+	 zoom="8"
+     center="31.75, 34.87"
+     disable-default-u-i="false"
+     disable-double-click-zoom="false"
+     draggable="true"
+     tilt="0"
+     map-type-id="SATELLITE"
+	 map-type-control="true"
+	 map-type-control-options="{style:'DROPDOWN_MENU'}"
+	 on-bounds_changed="refreshModel()"
+	 on-center_changed="refreshModel()"
+	 class="angular-google-map-container">
+</map>
+<button class="btn btn-success" ng-click="clearCross()">Clear cross</button>

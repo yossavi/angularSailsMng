@@ -1,0 +1,45 @@
+<div flow-init="{target: 'http://yossavi.cloudapp.net/anattour/api/upload/image'}"
+     flow-files-submitted="$flow.upload()"
+     flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+     flow-file-success="success($message)">
+	<div class="drop" flow-drop ng-class="dropClass">
+		<span class="btn btn-default" flow-btn>Upload Images</span>
+		<span class="btn btn-default" flow-btn flow-directory ng-show="$flow.supportDirectory">Upload Folder of Images</span>
+		<b>OR</b>
+		Drag And Drop your images here
+	</div>
+	<br/>
+	<div>
+		<div ng-repeat="file in $flow.files" class="gallery-box" ng-hide="file.progress()==1">
+			<span class="title">{{file.name}}</span>
+			<div class="thumbnail" ng-show="$flow.files.length">
+				<img flow-img="file" />
+			</div>
+			<div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+				<div class="progress-bar" role="progressbar"
+				     aria-valuenow="{{file.progress() * 100}}"
+				     aria-valuemin="0"
+				     aria-valuemax="100"
+				     ng-style="{width: (file.progress() * 100) + '%'}">
+					<span class="sr-only">{{file.progress()}}% Complete</span>
+				</div>
+			</div>
+		</div>
+		<span class="badge">{{images.length}}</span>
+		<div ng-repeat="image in images | orderBy: 'order'" class="gallery-box">
+			<span class="title"> <a href="" editable-text="image.description" onaftersave="update(image.id)">{{ image.description || 'empty' }}</a></span>
+			<div class="thumbnail">
+				<a ui-sref="mainlist.item.itemmodify({model: model, mainid: id, mainpopulate: 'images', maincollection: 'image', id: image.id})"><img src="{{getUrl(image.id)}}" /></a>
+			</div>
+			<div class="btn-group">
+				<a class="btn btn-xs btn-danger" ng-click="delete(image.id)">
+					Delete
+				</a>
+			</div>
+			<button class="btn btn-xs btn-success" clip-copy="getUrl(image.id)">Choose</button>
+			<a href="" editable-text="image.order" onaftersave="update(image.id)">{{ image.order || 'empty' }}</a>
+			<span class="title"> <a href="" editable-text="image.credit" onaftersave="update(image.id)">{{ image.credit || 'empty' }}</a></span>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

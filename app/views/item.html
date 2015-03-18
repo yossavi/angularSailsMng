@@ -1,0 +1,10 @@
+<h1>{{item[showName]}}</h1>
+<tabset justified="true" class="scrollable-x">
+	<tab heading="Modify" ui-sref=".itemmodify" class="clickable"></tab>
+	<tab heading="Images" ui-sref=".images" ng-show="definitions.images" class="clickable"></tab>
+	<tab heading="Videos" ui-sref=".videos" ng-show="definitions.videos" class="clickable"></tab>
+	<tab heading="Map" ui-sref=".map" ng-show="definitions.routes" class="clickable"></tab>
+	<tab ng-repeat="(keyDef, valueDef) in definitions" ng-show="valueDef.model && !valueDef.hide && keyDef!='loc_start' && keyDef!='passport' && keyDef!='loc_end' " heading="{{keyDef}}" ui-sref=".populatedmodel({collection: valueDef.model, populate: keyDef})" class="clickable" ></tab>
+	<tab ng-repeat="(keyDef, valueDef) in definitions" ng-show="valueDef.collection && !valueDef.hide && keyDef!='images' && keyDef!='passports' && keyDef!='videos' && keyDef!='routes'" heading="{{keyDef}}" ui-sref=".populatedlist({collection: valueDef.collection, populate: keyDef})" class="clickable" ></tab>
+</tabset>
+<div ui-view="" class="scrollable-y"></div>

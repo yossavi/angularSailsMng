@@ -1,0 +1,194 @@
+<!doctype html>
+<html class="no-js" ng-app="mngApp" ng-controller="MainCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>{{local.brandName}} Admin</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="fragment" content="!">
+    <!--<base href="/mng/"/>-->
+    <base href="/"/>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <link rel="stylesheet" href="bower_components/tinymce/plugins/visualblocks/css/visualblocks.css" />
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a
+        href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<div class="progress"  id="loadingProgress">
+	<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+		 aria-valuenow="100"
+		 aria-valuemin="0" aria-valuemax="100">
+	</div>
+</div>
+<div class="modal fade" id="errorModal">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content error-modal">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span
+					aria-hidden="true">&times;</span><span
+					class="sr-only" translate="close"></span></button>
+				<h4 class="modal-title" translate="error"></h4>
+			</div>
+			<div class="modal-body" id="errorModalContent">
+
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">{{local.brandName}}-mng</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-class="{active : model=='category'}"><a ui-sref="mainlist({model: 'category', mainid: null, mainpopulate: null, maincollection: null})">Categories</a></li>
+	            <li ng-class="{active : model=='sub_category'}"><a ui-sref="mainlist({model: 'sub_category', mainid: null, mainpopulate: null, maincollection: null})">Sub categories</a></li>
+                <li class="divider-vertical-second-menu"></li>
+	            <li ng-class="{active : model=='place'}"><a ui-sref="mainlist({model: 'place', mainid: null, mainpopulate: null, maincollection: null})">Places</a></li>
+	            <li class="divider-vertical-second-menu"></li>
+	            <li ng-class="{active : model=='top_area'}"><a ui-sref="mainlist({model: 'top_area', mainid: null, mainpopulate: null, maincollection: null})">Top areas</a></li>
+	            <li ng-class="{active : model=='area'}"><a ui-sref="mainlist({model: 'area', mainid: null, mainpopulate: null, maincollection: null})">Areas</a></li>
+	            <li ng-class="{active : model=='location'}"><a ui-sref="mainlist({model: 'location', mainid: null, mainpopulate: null, maincollection: null})">Locations</a></li>
+	            <li ng-class="{active : model=='route'}"><a ui-sref="mainlist({model: 'route', mainid: null, mainpopulate: null, maincollection: null})">Routes</a></li>
+	            <li class="divider-vertical-second-menu"></li>
+
+
+	            <li class="dropdown">
+		            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Etc <span class="caret"></span></a>
+		            <ul class="dropdown-menu" role="menu">
+			            <li ng-class="{active : model=='color'}"><a ui-sref="mainlist({model: 'color', mainid: null, mainpopulate: null, maincollection: null})">Colors</a></li>
+			            <li ng-class="{active : model=='interest_point_cat'}"><a ui-sref="mainlist({model: 'interest_point_cat', mainid: null, mainpopulate: null, maincollection: null})">Interest point cat</a></li>
+			            <li ng-class="{active : model=='equipment'}"><a ui-sref="mainlist({model: 'equipment', mainid: null, mainpopulate: null, maincollection: null})">Equipments</a></li>
+			            <li ng-class="{active : model=='level'}"><a ui-sref="mainlist({model: 'level', mainid: null, mainpopulate: null, maincollection: null})">Levels</a></li>
+			            <li ng-class="{active : model=='season'}"><a ui-sref="mainlist({model: 'season', mainid: null, mainpopulate: null, maincollection: null})">Seasons</a></li>
+			            <li ng-class="{active : model=='hard_map'}"><a ui-sref="mainlist({model: 'hard_map', mainid: null, mainpopulate: null, maincollection: null})">Hard maps</a></li>
+			            <li ng-class="{active : model=='water_type'}"><a ui-sref="mainlist({model: 'water_type', mainid: null, mainpopulate: null, maincollection: null})">Water types</a></li>
+			            <li ng-class="{active : model=='route_type'}"><a ui-sref="mainlist({model: 'route_type', mainid: null, mainpopulate: null, maincollection: null})">Route types</a></li>
+			            <li ng-class="{active : model=='note'}"><a ui-sref="mainlist({model: 'note', mainid: null, mainpopulate: null, maincollection: null})">Notes</a></li>
+			            <li ng-class="{active : model=='note_filter'}"><a ui-sref="mainlist({model: 'note_filter', mainid: null, mainpopulate: null, maincollection: null})">Notes filters</a></li>
+			            <li ng-class="{active : model=='link'}"><a ui-sref="mainlist({model: 'link', mainid: null, mainpopulate: null, maincollection: null})">Links</a></li>
+			            <li ng-class="{active : model=='adjust_for'}"><a ui-sref="mainlist({model: 'adjust_for', mainid: null, mainpopulate: null, maincollection: null})">Adjust for</a></li>
+		            </ul>
+	            </li>
+	            <li class="dropdown">
+		            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Management <span class="caret"></span></a>
+		            <ul class="dropdown-menu" role="menu">
+			            <li ng-class="{active : model=='comment'}"><a ui-sref="mainlist({model: 'comment', mainid: null, mainpopulate: null, maincollection: null})">Comments</a></li>
+			            <li ng-class="{active : model=='user'}"><a ui-sref="mainlist({model: 'user', mainid: null, mainpopulate: null, maincollection: null})">Users</a></li>
+		            </ul>
+	            </li>
+				<li ng-show="user.isUser"><a href="#"><strong>Hello {{user.data.firstName}}</strong></a></li>
+				<li ng-show="user.isUser && !user.isAdmin"><a href="#"><strong style="color: red">Not Admin!!!</strong></a></li>
+				<li ng-show="user.isUser"><a ui-sref="logout">Logout</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div ui-view=""></div>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+</script>
+
+<!-- build:js(.) scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<![endif]-->
+<!-- endbuild -->
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing,weather,geometry,visualization,places,panoramio"></script>
+<script src="http://yossavi.cloudapp.net/anattour/public/scripts/fontawesome-markers.min.js"></script>
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/lodash/dist/lodash.compat.js"></script>
+<script src="bower_components/restangular/dist/restangular.js"></script>
+<script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-prompt/dist/angular-prompt.js"></script>
+<script src="bower_components/tinymce/tinymce.min.js"></script>
+<script src="bower_components/tinymce/plugins/image/plugin.min.js"></script>
+<script src="bower_components/tinymce/plugins/link/plugin.min.js"></script>
+<script src="bower_components/tinymce/plugins/lists/plugin.min.js"></script>
+<script src="bower_components/tinymce/plugins/table/plugin.min.js"></script>
+<script src="bower_components/tinymce/plugins/wordcount/plugin.min.js"></script>
+<script src="bower_components/tinymce/plugins/hr/plugin.min.js"></script>
+<script src="bower_components/tinymce/plugins/visualchars/plugin.min.js"></script>
+<script src="bower_components/tinymce/plugins/visualblocks/plugin.min.js"></script>
+<script src="bower_components/tinymce/plugins/preview/plugin.min.js"></script>
+<script src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+<script src="bower_components/flow.js/dist/flow.js"></script>
+<script src="bower_components/ng-flow/dist/ng-flow.js"></script>
+<script src="bower_components/zeroclipboard/dist/ZeroClipboard.js"></script>
+<script src="bower_components/ng-clip/src/ngClip.js"></script>
+<script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
+<script src="bower_components/angular-permission/dist/angular-permission.js"></script>
+<script src="bower_components/tinycolor/tinycolor.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/mainlist.js"></script>
+<script src="scripts/controllers/item.js"></script>
+<script src="scripts/controllers/populatedlist.js"></script>
+<script src="scripts/controllers/populatedmodel.js"></script>
+<script src="scripts/controllers/images.js"></script>
+<script src="scripts/controllers/videos.js"></script>
+<script src="scripts/controllers/itemmodify.js"></script>
+<script src="scripts/controllers/map.js"></script>
+<script src="scripts/controllers/login.js"></script>
+<script src="scripts/services/user.js"></script>
+<script src="scripts/services/error.js"></script>
+<script src="scripts/services/loading.js"></script>
+<script src="scripts/services/local.js"></script>
+<!-- endbuild -->
+</body>
+</html>

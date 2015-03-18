@@ -1,0 +1,27 @@
+<div class="row" style="width: 100%">
+	<div class="col-md-2">
+		<h1>{{model}}</h1>
+		<form class="form-inline" role="form" ng-submit="add()">
+			<input class="form-control" type="text" placeholder="New {{model}}" ng-model="newItem[showName]"><button type="submit" class="btn btn-success" >Add</button>
+		</form>
+		<button class="btn btn-xs btn-success" ng-click="filter = 'updatedAt'; reverse=!reverse; cookieOrder()">Date</button>
+		<button class="btn btn-xs btn-success" ng-click="filter = showName; reverse=!reverse; cookieOrder()">Abc</button>
+		<input class="form-control" type="text" ng-model="search[showName]" placeholder="Filter List">
+		<div class="scrollable-y">
+			<span class="badge">{{list.length}}</span>
+			<table class="table table-hover">
+				<tr ng-repeat="item in list | orderBy: filter: reverse | filter:search" ng-class="{'done-place': item.is_done, 'not-done-place': !item.is_done && model=='place'}">
+					<td class="clickable" ui-sref=".item.itemmodify({id: '{{item.id}}'})"><strong>
+				    <span ng-if="model != 'image'">
+						{{item[showName]}}
+				    </span>
+				    <span ng-if="model == 'image'">
+					    <img height="40px" src="{{getUrl(item.id)}}" />
+				    </span>
+				    </strong></td><td><button class="btn btn-danger pull-right" ng-click="delete(item.id)">Delete</button></td></tr>
+			</table>
+		</div>
+	</div>
+	<div class="col-md-10" ui-view="">
+	</div>
+</div>

@@ -1,0 +1,65 @@
+<div class="row" ng-show="!user.isUser">
+	<div class="col-md-12 homebg">
+		<div class="row bg-trans full-height padding-top-lg">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 text-center">
+				<form name="loginForm" ng-submit="login.submit()" role="form">
+					<div class="row">
+						<div class="col-md-12">
+							<p class="white size-md"><strong>Login</strong></p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<input class="input-siena" name="usermail" ng-model="login.usermail" placeholder="Email" type="email" required/>
+								<div ng-show="loginForm.usermail.$dirty && loginForm.usermail.$invalid">
+									<div class="alert alert-danger" role="alert" ng-show="loginForm.usermail.$error.required">
+										your email is required
+									</div>
+									<div class="alert alert-danger" role="alert" ng-show="loginForm.usermail.$error.email">
+										your email is not a valid email
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<input class="input-siena" name="pass" ng-model="login.password" placeholder="Password" type="password" required />
+								<div ng-show="loginForm.pass.$dirty && loginForm.pass.$invalid">
+									<div class="alert alert-danger" role="alert" ng-show="loginForm.pass.$error.required">
+										your password is required
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group object-center">
+								<button class="btn btn-siena bg-blue" type="submit" ng-disabled="loginForm.$invalid">
+									Login
+								</button>
+								<div class="alert alert-danger" role="alert" ng-show="isLoginResponse">
+									{{loginResponse}}
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row padding-lg">
+						<div class="col-md-12">
+							<button type="button" class="btn btn-siena bg-blue-dark" ng-click="user.providerLogin('facebook')">Login with Facebook</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</div>
+</div>
