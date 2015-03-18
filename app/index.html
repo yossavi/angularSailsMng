@@ -67,42 +67,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{active : model=='category'}"><a ui-sref="mainlist({model: 'category', mainid: null, mainpopulate: null, maincollection: null})">Categories</a></li>
-	            <li ng-class="{active : model=='sub_category'}"><a ui-sref="mainlist({model: 'sub_category', mainid: null, mainpopulate: null, maincollection: null})">Sub categories</a></li>
-                <li class="divider-vertical-second-menu"></li>
-	            <li ng-class="{active : model=='place'}"><a ui-sref="mainlist({model: 'place', mainid: null, mainpopulate: null, maincollection: null})">Places</a></li>
-	            <li class="divider-vertical-second-menu"></li>
-	            <li ng-class="{active : model=='top_area'}"><a ui-sref="mainlist({model: 'top_area', mainid: null, mainpopulate: null, maincollection: null})">Top areas</a></li>
-	            <li ng-class="{active : model=='area'}"><a ui-sref="mainlist({model: 'area', mainid: null, mainpopulate: null, maincollection: null})">Areas</a></li>
-	            <li ng-class="{active : model=='location'}"><a ui-sref="mainlist({model: 'location', mainid: null, mainpopulate: null, maincollection: null})">Locations</a></li>
-	            <li ng-class="{active : model=='route'}"><a ui-sref="mainlist({model: 'route', mainid: null, mainpopulate: null, maincollection: null})">Routes</a></li>
-	            <li class="divider-vertical-second-menu"></li>
-
-
-	            <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Etc <span class="caret"></span></a>
-		            <ul class="dropdown-menu" role="menu">
-			            <li ng-class="{active : model=='color'}"><a ui-sref="mainlist({model: 'color', mainid: null, mainpopulate: null, maincollection: null})">Colors</a></li>
-			            <li ng-class="{active : model=='interest_point_cat'}"><a ui-sref="mainlist({model: 'interest_point_cat', mainid: null, mainpopulate: null, maincollection: null})">Interest point cat</a></li>
-			            <li ng-class="{active : model=='equipment'}"><a ui-sref="mainlist({model: 'equipment', mainid: null, mainpopulate: null, maincollection: null})">Equipments</a></li>
-			            <li ng-class="{active : model=='level'}"><a ui-sref="mainlist({model: 'level', mainid: null, mainpopulate: null, maincollection: null})">Levels</a></li>
-			            <li ng-class="{active : model=='season'}"><a ui-sref="mainlist({model: 'season', mainid: null, mainpopulate: null, maincollection: null})">Seasons</a></li>
-			            <li ng-class="{active : model=='hard_map'}"><a ui-sref="mainlist({model: 'hard_map', mainid: null, mainpopulate: null, maincollection: null})">Hard maps</a></li>
-			            <li ng-class="{active : model=='water_type'}"><a ui-sref="mainlist({model: 'water_type', mainid: null, mainpopulate: null, maincollection: null})">Water types</a></li>
-			            <li ng-class="{active : model=='route_type'}"><a ui-sref="mainlist({model: 'route_type', mainid: null, mainpopulate: null, maincollection: null})">Route types</a></li>
-			            <li ng-class="{active : model=='note'}"><a ui-sref="mainlist({model: 'note', mainid: null, mainpopulate: null, maincollection: null})">Notes</a></li>
-			            <li ng-class="{active : model=='note_filter'}"><a ui-sref="mainlist({model: 'note_filter', mainid: null, mainpopulate: null, maincollection: null})">Notes filters</a></li>
-			            <li ng-class="{active : model=='link'}"><a ui-sref="mainlist({model: 'link', mainid: null, mainpopulate: null, maincollection: null})">Links</a></li>
-			            <li ng-class="{active : model=='adjust_for'}"><a ui-sref="mainlist({model: 'adjust_for', mainid: null, mainpopulate: null, maincollection: null})">Adjust for</a></li>
-		            </ul>
-	            </li>
-	            <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Management <span class="caret"></span></a>
-		            <ul class="dropdown-menu" role="menu">
-			            <li ng-class="{active : model=='comment'}"><a ui-sref="mainlist({model: 'comment', mainid: null, mainpopulate: null, maincollection: null})">Comments</a></li>
-			            <li ng-class="{active : model=='user'}"><a ui-sref="mainlist({model: 'user', mainid: null, mainpopulate: null, maincollection: null})">Users</a></li>
-		            </ul>
-	            </li>
+                <li ng-show="user.isAdmin" ng-repeat="item in local.menu" ng-class="{
+					'active' : item.type == 'shallow' &&  model==item.name,
+					'divider-vertical-second-menu': item.type == 'divider',
+					'dropdown': item.type == 'deep'
+                }">
+					<a ng-if="item.type == 'shallow'" ui-sref="mainlist({model: item.name, mainid: null, mainpopulate: null, maincollection: null})">{{item.showName}} </a>
+					<a ng-if="item.type == 'deep'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{item.showName}} <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li ng-repeat="sub in item.subs" ng-class="{active : model==sub.name}"><a ui-sref="mainlist({model: sub.name, mainid: null, mainpopulate: null, maincollection: null})">{{sub.showName}}</a></li>
+					</ul>
+				</li>
 				<li ng-show="user.isUser"><a href="#"><strong>Hello {{user.data.firstName}}</strong></a></li>
 				<li ng-show="user.isUser && !user.isAdmin"><a href="#"><strong style="color: red">Not Admin!!!</strong></a></li>
 				<li ng-show="user.isUser"><a ui-sref="logout">Logout</a></li>

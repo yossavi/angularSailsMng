@@ -8,7 +8,7 @@
  * Controller of the mngApp
  */
 angular.module('mngApp')
-	.controller('VideosCtrl', function ($scope, $rootScope, Restangular, prompt) {
+	.controller('VideosCtrl', function ($scope, $rootScope, Restangular, prompt, local) {
 		Restangular.one($rootScope.model, $scope.id).get({'limit': 9999, 'populate': ['videos']}).then(function(populateList) {
 			$scope.videos = populateList.videos;
 		});
@@ -52,6 +52,6 @@ angular.module('mngApp')
 		}
 
 		$scope.getVideoUrl = function(id) {
-			return 'http://yossavi.cloudapp.net/anattour/public/videos/'+id+'.mp4';
+			return local.publicUrl+'/videos/'+id+'.mp4';
 		}
 	});

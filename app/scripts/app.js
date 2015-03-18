@@ -166,7 +166,7 @@ angular
 		errorProvider.setError(9999, 'general error');
 	})
 	.config(function (RestangularProvider, errorProvider, loadingProvider, localProvider) {
-		RestangularProvider.setBaseUrl(localProvider.url);
+		RestangularProvider.setBaseUrl(localProvider.apiUrl);
 
 		RestangularProvider.addRequestInterceptor(function(element, operation, what, url) {
 			loadingProvider.plusHttp(1);
@@ -203,9 +203,9 @@ angular
 			chunkSize: 1024*1024*512
 		};
 	})
-	.config(['ngClipProvider', function(ngClipProvider) {
-		ngClipProvider.setPath("http://yossavi.cloudapp.net/anattour/public/scripts/zeroclipboard/dist/ZeroClipboard.swf");
-	}])
+	.config(function(ngClipProvider, localProvider) {
+		ngClipProvider.setPath(localProvider.publicUrl+'/scripts/zeroclipboard/dist/ZeroClipboard.swf');
+	})
 	.run(function (Permission, user) {
 		Permission.defineRole('admin', function (stateParams) {
 			return user.isAdmin;

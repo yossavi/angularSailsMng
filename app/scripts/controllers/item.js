@@ -8,7 +8,7 @@
  * Controller of the mngApp
  */
 angular.module('mngApp')
-    .controller('ItemCtrl', function ($scope, $rootScope, $stateParams, $sce, Restangular) {
+    .controller('ItemCtrl', function ($scope, $rootScope, $stateParams, $sce, Restangular, local) {
         $scope.id = $stateParams.id;
 
 		var refreshEditor = _.after(2, function() {
@@ -50,9 +50,9 @@ angular.module('mngApp')
 			object_resizing : true,
 			convert_urls: false,
 			skin : 'lightgray',
-			skin_url: 'http://yossavi.cloudapp.net/anattour/public/scripts/tinymce/skins/lightgray',
+			skin_url: local.publicUrl+'/scripts/tinymce/skins/lightgray',
 			theme : 'modern',
-			theme_url: 'http://yossavi.cloudapp.net/anattour/public/scripts/tinymce/themes/modern/theme.min.js',
+			theme_url: local.publicUrl+'/scripts/tinymce/themes/modern/theme.min.js',
 			plugins: 'image link lists table wordcount hr visualchars visualblocks preview',
 			//external_plugins: {
 			//	"image": "http://yossavi.cloudapp.net/anattour/public/scripts/tinymce/.js"

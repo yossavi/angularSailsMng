@@ -16,7 +16,7 @@ angular.module('mngApp')
 		user.getUser();
 
 		$scope.getUrl = function(id) {
-			return 'http://yossavi.cloudapp.net/anattour/public/images/'+id+'-s.jpg';
+			return local.publicUrl+'/images/'+id+'-s.jpg';
 		}
 
 		function resize() {
