@@ -16,7 +16,7 @@
 						{{item[showName]}}
 				    </span>
 				    <span ng-if="model == 'image'">
-					    <img height="40px" src="{{getUrl(item.id)}}" />
+					    <img height="40px" ng-src="{{getUrl(item.id)}}" />
 				    </span>
 				    </strong></td><td><button class="btn btn-danger pull-right" ng-click="delete(item.id)">Delete</button></td></tr>
 			</table>

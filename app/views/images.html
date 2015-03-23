@@ -29,7 +29,7 @@
 		<div ng-repeat="image in images | orderBy: 'order'" class="gallery-box">
 			<span class="title"> <a href="" editable-text="image.description" onaftersave="update(image.id)">{{ image.description || 'empty' }}</a></span>
 			<div class="thumbnail">
-				<a ui-sref="mainlist.item.itemmodify({model: model, mainid: id, mainpopulate: 'images', maincollection: 'image', id: image.id})"><img src="{{getUrl(image.id)}}" /></a>
+				<a ui-sref="mainlist.item.itemmodify({model: model, mainid: id, mainpopulate: 'images', maincollection: 'image', id: image.id})"><img ng-src="{{getUrl(image.id)}}" /></a>
 			</div>
 			<div class="btn-group">
 				<a class="btn btn-xs btn-danger" ng-click="delete(image.id)">

@@ -61,7 +61,7 @@
                 <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span> <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="">{{local.brandName}}-mng</a>
+            <a class="navbar-brand" ui-sref="home">{{local.brandName}}-mng</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -73,12 +73,12 @@
 					'dropdown': item.type == 'deep'
                 }">
 					<a ng-if="item.type == 'shallow'" ui-sref="mainlist({model: item.name, mainid: null, mainpopulate: null, maincollection: null})">{{item.showName}} </a>
-					<a ng-if="item.type == 'deep'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{item.showName}} <span class="caret"></span></a>
+					<a ng-if="item.type == 'deep'" href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{item.showName}} <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li ng-repeat="sub in item.subs" ng-class="{active : model==sub.name}"><a ui-sref="mainlist({model: sub.name, mainid: null, mainpopulate: null, maincollection: null})">{{sub.showName}}</a></li>
 					</ul>
 				</li>
-				<li ng-show="user.isUser"><a href="#"><strong>Hello {{user.data.firstName}}</strong></a></li>
+				<li ng-show="user.isUser"><a href="#"><strong>Hello {{user.data[local.firstName]}}</strong></a></li>
 				<li ng-show="user.isUser && !user.isAdmin"><a href="#"><strong style="color: red">Not Admin!!!</strong></a></li>
 				<li ng-show="user.isUser"><a ui-sref="logout">Logout</a></li>
             </ul>
