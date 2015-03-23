@@ -8,7 +8,7 @@
  * Controller of the mngApp
  */
 angular.module('mngApp')
-	.controller('LoginCtrl', function ($scope, user) {
+	.controller('LoginCtrl', function ($scope, user, $rootScope) {
 		$scope.login = {
 			submit: function () {
 				user.login($scope.login.usermail, $scope.login.password, function () {

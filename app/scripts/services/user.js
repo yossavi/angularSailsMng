@@ -46,7 +46,7 @@ angular.module('mngApp')
 		}
 
 		that.providerLogin = function(provider) {
-			var win = popupwindow(local.url+'/auth/'+provider, "_blank", 800, 800);
+			var win = popupwindow(local.apiUrl+'/auth/'+provider, "_blank", 800, 800);
 		}
 
 		that.register = function(register, callbak) {
