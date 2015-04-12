@@ -72,7 +72,7 @@ angular.module('mngApp')
 				if (user) {
 					that.data = user;
 					that.isUser = true;
-					that.isAdmin = user.admin && user.admin.level>0;
+					that.isAdmin = user.admin && user.admin[0] && user.admin[0].level>0;
 				}
 
 				if (that.isAdmin) {
