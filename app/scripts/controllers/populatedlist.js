@@ -54,7 +54,7 @@ angular.module('mngApp')
 		};
 
 		$scope.addFromList = function(obj) {
-			Restangular.one($rootScope.model, $scope.id).post($scope.populate, obj).then(function(newItem) {
+			Restangular.one($rootScope.model, $scope.id).one($scope.populate, obj.id).post().then(function(newItem) {
 				$scope.populateList = newItem[$scope.populate];
 				$scope.list.splice($scope.list.indexOf(obj), 1);
 			});
