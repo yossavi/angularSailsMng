@@ -1,7 +1,7 @@
 <ul class="list-group">
 	<li class="list-group-item" ng-repeat="(keyDef, valueDef) in definitions" ng-hide="keyDef=='createdAt' || keyDef=='id' || keyDef=='updatedAt' || valueDef.collection || valueDef.model || valueDef.hide">
 		<strong>{{keyDef}}:</strong>
-        <span ng-if="(valueDef.type == 'string' && (!valueDef.text || valueDef.text == 'short' || valueDef.text == 'show')) || valueDef.type == 'int' || valueDef.type == 'float' || valueDef.type == 'email'">
+        <span ng-if="(valueDef.type == 'string' && (!valueDef.text || valueDef.text == 'short' || valueDef.text == 'show')) || valueDef.type == 'int' || valueDef.type == 'integer' || valueDef.type == 'float' || valueDef.type == 'email'">
             <a href="" editable-text="item[keyDef]">{{ item[keyDef] || 'empty' }}</a>
         </span>
         <span ng-if="valueDef.type == 'string' && valueDef.text == 'long'">
