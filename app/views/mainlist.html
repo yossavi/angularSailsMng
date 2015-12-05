@@ -1,12 +1,18 @@
 <div class="row" style="width: 100%">
 	<div class="col-md-2">
 		<h1>{{model}}</h1>
-		<form class="form-inline" role="form" ng-submit="add()">
-			<input class="form-control" type="text" placeholder="New {{model}}" ng-model="newItem[showName]"><button type="submit" class="btn btn-success" >Add</button>
+		<form class="form-inline space" role="form" ng-submit="add()">
+			<input ng-if="showName!='id'" class="form-control" type="text" placeholder="New {{model}} {{showName}}" ng-model="newItem[showName]"><button type="submit" class="btn btn-success" >Add New</button>
 		</form>
-		<button class="btn btn-xs btn-success" ng-click="filter = 'updatedAt'; reverse=!reverse; cookieOrder()">Date</button>
-		<button class="btn btn-xs btn-success" ng-click="filter = showName; reverse=!reverse; cookieOrder()">Abc</button>
-		<input class="form-control" type="text" ng-model="search[showName]" placeholder="Filter List">
+		
+		<div>
+			<input class="form-control" type="text" ng-model="search[showName]" placeholder="Search">
+		</div>
+		<div>
+			Sort list  by: 
+			<button class="btn btn-xs btn-success" ng-click="filter = 'updatedAt'; reverse=!reverse; cookieOrder()">Date</button>
+			<button class="btn btn-xs btn-success" ng-click="filter = showName; reverse=!reverse; cookieOrder()">Abc</button>
+		</div>
 		<div class="scrollable-y">
 			<span class="badge">{{list.length}}</span>
 			<table class="table table-hover">

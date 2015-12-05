@@ -1,4 +1,3 @@
-/* Space out content a bit */
 body {
     padding-top: 60px;
     background-color: #fff;
@@ -107,4 +106,33 @@ body {
 
 ul.nav li.dropdown:hover > ul.dropdown-menu {
 	display: block;
+}
+
+.fb-button {
+	background-color: #46639E;
+	color: white;
+}
+
+.splash {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	z-index: 100;
+	/* height: 200px; */
+	margin-top: -100px;
+	width: 600px;
+	margin-left: -300px;
+}
+
+.show-hide {
+	-webkit-transition: all linear 0.5s;
+	transition: all linear 0.5s;
+}
+
+.show-hide.ng-hide {
+	opacity: 0;
+}
+
+.space {
+	padding: 15px 0 15px 0;
 }

@@ -1,112 +1,121 @@
-<div class="row" ng-show="!user.isUser">
-	<div class="col-md-12 homebg">
-		<div class="row bg-trans full-height padding-top-lg">
-			<div class="col-md-4"></div>
-			<div class="col-md-4 text-center">
-				<form name="loginForm" ng-submit="login.submit()" role="form">
-					<div class="row">
-						<div class="col-md-12">
-							<p class="white size-md"><strong>Login</strong></p>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-12">
-							<div class="form-group">
-								<input class="form-control" name="usermail" ng-model="login.usermail" placeholder="Email" type="email" required/>
-								<div ng-show="loginForm.usermail.$dirty && loginForm.usermail.$invalid">
-									<div class="alert alert-danger" role="alert" ng-show="loginForm.usermail.$error.required">
-										your email is required
-									</div>
-									<div class="alert alert-danger" role="alert" ng-show="loginForm.usermail.$error.email">
-										your email is not a valid email
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-12">
-							<div class="form-group">
-								<input class="form-control" name="pass" ng-model="login.password" placeholder="Password" type="password" required />
-								<div ng-show="loginForm.pass.$dirty && loginForm.pass.$invalid">
-									<div class="alert alert-danger" role="alert" ng-show="loginForm.pass.$error.required">
-										your password is required
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-12">
-							<div class="form-group object-center">
-								<button class="btn btn-s btn-default navbar-btn" type="submit" ng-disabled="loginForm.$invalid">
-									Login
-								</button>
-								<div class="alert alert-danger" role="alert" ng-show="isLoginResponse">
-									{{loginResponse}}
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-				<form name="registerForm" ng-submit="register.submit()" role="form">
-					<div class="row">
-						<div class="col-md-12">
-							<p class="white size-md"><strong>Register</strong></p>
-						</div>
-					</div>
-					<div class='row'>
-						<div class="col-md-12">
-							<input type="text" class="form-control" name="firstname" ng-model="register.firstname"
-								placeholder="First Name" required/>
-	
-							<div ng-show="registerForm.firstname.$dirty && registerForm.firstname.$invalid">
-								<div ng-show="registerForm.firstname.$error.required">your first name is required</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<input type="text" class="form-control" name="lastname" ng-model="register.lastname"
-								placeholder="Last Name" required/>
-	
-							<div ng-show="registerForm.lastname.$dirty && registerForm.lastname.$invalid">
-								<div ng-show="registerForm.lastname.$error.required">your last name is required</div>
-							</div>
-						</div>
-					</div>
-					<div class='row'>
-						<div class='col-md-12'>
-							<input class="form-control" name="usermail" ng-model="register.usermail" placeholder="Email"
-								type="email" required/>
-							<div ng-show="registerForm.usermail.$dirty && registerForm.usermail.$invalid">
-								<div ng-show="registerForm.usermail.$error.required">your email is required</div>
-								<div ng-show="registerForm.usermail.$error.email">your email is not a valid email</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class='col-md-12'>
-							<input class="form-control" name="pass" ng-model="register.password" placeholder="Password" type="password" required ng-minlength=3 ng-maxlength=20 />
-							<div ng-show="registerForm.pass.$dirty && registerForm.pass.$invalid">
-								<div ng-show="registerForm.pass.$error.required">your password is required</div>
-								<div ng-show="registerForm.pass.$error.minlength">your password cannot be smaller than 3 characters</div>
-								<div ng-show="registerForm.pass.$error.maxlength">your password cannot be greater than 20 characters</div>
-							</div>
-						</div>
-					</div>
-					<div class='row'>
-						<div class='col-md-12'>
-							<button class='btn btn-s btn-default navbar-btn' type="submit">Register</button>
-							<div class="alert alert-danger" role="alert" ng-show="isRegisterResponse">
-									{{registerResponse}}
-								</div>
-						</div>
-					</div>
-				</form>
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4 text-center">
+		<form name="loginForm" ng-submit="login.submit()" role="form">
+			<div class="row">
+				<div class="col-md-12">
+					<p class="white size-md"><strong>Login</strong></p>
+				</div>
 			</div>
-			<div class="col-md-4"></div>
-		</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<input class="form-control" name="usermail" ng-model="login.usermail" placeholder="Email" type="email" required/>
+						<div ng-show="loginForm.usermail.$dirty && loginForm.usermail.$invalid">
+							<div class="alert alert-danger" role="alert" ng-show="loginForm.usermail.$error.required">
+								your email is required
+							</div>
+							<div class="alert alert-danger" role="alert" ng-show="loginForm.usermail.$error.email">
+								your email is not a valid email
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<input class="form-control" name="pass" ng-model="login.password" placeholder="Password" type="password" required />
+						<div ng-show="loginForm.pass.$dirty && loginForm.pass.$invalid">
+							<div class="alert alert-danger" role="alert" ng-show="loginForm.pass.$error.required">
+								your password is required
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group object-center">
+						<button class="btn btn-s btn-default navbar-btn" type="submit" ng-disabled="loginForm.$invalid">
+							Login
+						</button>
+						<span ng-if="isFb">or
+							<button type="button" class="btn btn-s fb-button" ng-click="user.providerLogin('facebook')">Login with Facebook</button>
+							<div class="alert alert-danger" role="alert" ng-show="isLoginResponse">
+								{{loginResponse}}
+							</div>
+						</span>
+					</div>
+				</div>
+			</div>
+		</form>
+		<form name="registerForm" ng-submit="register.submit()" role="form">
+			<div class="row">
+				<div class="col-md-12">
+					<p class="white size-md"><strong>Register</strong></p>
+				</div>
+			</div>
+			<div class='row'>
+				<div class="col-md-12">
+					<div class="form-group">
+						<input type="text" class="form-control" name="firstname" ng-model="register.firstname"
+							placeholder="First Name" required/>
+
+						<div ng-show="registerForm.firstname.$dirty && registerForm.firstname.$invalid">
+							<div ng-show="registerForm.firstname.$error.required">your first name is required</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<input type="text" class="form-control" name="lastname" ng-model="register.lastname"
+							placeholder="Last Name" required/>
+
+						<div ng-show="registerForm.lastname.$dirty && registerForm.lastname.$invalid">
+							<div ng-show="registerForm.lastname.$error.required">your last name is required</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='row'>
+				<div class='col-md-12'>
+					<div class="form-group">
+						<input class="form-control" name="usermail" ng-model="register.usermail" placeholder="Email"
+							type="email" required/>
+						<div ng-show="registerForm.usermail.$dirty && registerForm.usermail.$invalid">
+							<div ng-show="registerForm.usermail.$error.required">your email is required</div>
+							<div ng-show="registerForm.usermail.$error.email">your email is not a valid email</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class='col-md-12'>
+					<div class="form-group">
+						<input class="form-control" name="pass" ng-model="register.password" placeholder="Password" type="password" required ng-minlength=3 ng-maxlength=20 />
+						<div ng-show="registerForm.pass.$dirty && registerForm.pass.$invalid">
+							<div ng-show="registerForm.pass.$error.required">your password is required</div>
+							<div ng-show="registerForm.pass.$error.minlength">your password cannot be smaller than 3 characters</div>
+							<div ng-show="registerForm.pass.$error.maxlength">your password cannot be greater than 20 characters</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='row'>
+				<div class='col-md-12'>
+					<div class="form-group">
+						<button class='btn btn-s btn-default navbar-btn' type="submit">Register</button>
+						<div class="alert alert-danger" role="alert" ng-show="isRegisterResponse">
+								{{registerResponse}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
+	<div class="col-md-4"></div>
 </div>

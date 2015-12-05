@@ -11,6 +11,7 @@ angular.module('mngApp')
   .controller('PopulatedlistCtrl', function ($rootScope, $scope, $stateParams, Restangular, prompt) {
 		$scope.collection = $stateParams.collection;
 		$scope.populate = $stateParams.populate;
+		$scope.newPopItem ={};
 
 		Restangular.one($rootScope.model, $scope.id).get({'limit': 9999, 'populate': [$scope.populate]}).then(function(populateList) {
 			$scope.populateList = populateList[$scope.populate];
@@ -44,7 +45,7 @@ angular.module('mngApp')
 		});
 
 		$scope.add = function() {
-			if ($scope.newPopItem.name instanceof Object) {
+			if ($scope.newPopItem && $scope.newPopItem.name instanceof Object) {
 				$scope.newPopItem = $scope.newPopItem.name;
 			}
 

@@ -37,7 +37,7 @@ angular.module('mngApp')
 					$rootScope.showName = key;
 				}
 			});
-
+			
 			if(!$rootScope.showName) {
 				$rootScope.showName = 'id';
 			}

@@ -12,8 +12,13 @@ angular.module('mngApp')
         $rootScope.model='';
 		$rootScope.user = user;
 		$rootScope.local = local;
+		$scope.pageLoading = true;
 
-		user.getUser();
+		user.getUser(function() {
+			$scope.pageLoading = false;
+			$("#bodyDiv").removeClass("hide");
+			$("#bodyDiv").addClass("loaded");
+		});
 
 		$scope.getUrl = function(id) {
 			return local.publicUrl+'/images/'+id+'-s.jpg';

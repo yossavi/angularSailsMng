@@ -5,13 +5,16 @@
 	</strong></td></tr>
 </table>
 <form class="form-inline" role="form" ng-submit="add()">
-	<input class="form-control" type="text" placeholder="New {{collection}}" ng-model="newPopItem[showNamePop]" typeahead="item as item[showNamePop] for item in list | filter:{name:$viewValue} | limitTo:8">
-	<button type="submit" class="btn btn-success" >Add</button>
+	<input ng-if="showNamePop!='id'" class="form-control" type="text" placeholder="New {{collection}} {{showNamePop}}" ng-model="newPopItem[showNamePop]" typeahead="item as item[showNamePop] for item in list | filter:{name:$viewValue} | limitTo:8">
+	<button type="submit" class="btn btn-success" >Add new {{collection}}</button>
 </form>
 <br />
-<button class="btn btn-xs btn-success" ng-click="filter = 'updatedAt'; reverse=!reverse;">Date</button>
-<button class="btn btn-xs btn-success" ng-click="filter = showNamePop; reverse=!reverse;">Abc</button>
-<input class="form-control" type="text" ng-model="search[showNamePop]" placeholder="Filter List">
+
+<input class="form-control" type="text" ng-model="search[showNamePop]" placeholder="Search">
+<div>Sort list by: 
+	<button class="btn btn-xs btn-success" ng-click="filter = 'updatedAt'; reverse=!reverse;">Date</button>
+	<button class="btn btn-xs btn-success" ng-click="filter = showNamePop; reverse=!reverse;">Abc</button>
+</div>
 <span class="badge">{{list.length}}</span>
 <table class="table table-hover">
 	<tr ng-repeat="item in list | orderBy: filter: reverse | filter:search"><td class="clickable" ng-click="addFromList(item)"><strong>

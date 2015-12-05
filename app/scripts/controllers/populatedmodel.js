@@ -11,6 +11,7 @@ angular.module('mngApp')
 	.controller('PopulatedmodelCtrl', function ($rootScope, $scope, $stateParams, Restangular, prompt) {
 		$scope.collection = $stateParams.collection;
 		$scope.populate = $stateParams.populate;
+		$scope.newPopItem ={};
 
 		function getModel() {
 			Restangular.one($rootScope.model, $scope.id).get({
@@ -42,7 +43,7 @@ angular.module('mngApp')
 		});
 
 		$scope.add = function () {
-			if ($scope.newPopItem.name instanceof Object) {
+			if ($scope.newPopItem && $scope.newPopItem.name instanceof Object) {
 				$scope.newPopItem = $scope.newPopItem.name;
 
 				var post = {};
@@ -66,6 +67,6 @@ angular.module('mngApp')
 			post[$scope.populate] = obj.id;
 			Restangular.one($rootScope.model, $scope.id).post("",post).then(function () {
 				$scope.populateModel = obj;
-			})
+			});
 		};
 	});
