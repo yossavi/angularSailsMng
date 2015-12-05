@@ -53,15 +53,7 @@ angular.module('mngApp')
 			Restangular.all('auth').all('local').all('register').post(register).then(function(user) {
 				that.data = user;
 				that.isUser = true;
-				if (register.fileResponse) {
-					$rootScope.moveFile('user', register.fileResponse.id, user.id).then(function(res) {
-						callbak();
-					}, function(err) {
-						register.err = err.data;
-					});
-				} else {
-					callbak();
-				}
+				callbak();
 			}, function(err) {
 				register.err = err.data;
 			});
@@ -72,7 +64,7 @@ angular.module('mngApp')
 				if (user) {
 					that.data = user;
 					that.isUser = true;
-					that.isAdmin = user.admin && user.admin[0] && user.admin[0].level>0;
+					that.isAdmin = user.admin && user.admin.level>0;
 				}
 
 				if (that.isAdmin) {

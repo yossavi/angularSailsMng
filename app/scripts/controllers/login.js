@@ -16,4 +16,12 @@ angular.module('mngApp')
 				});
 			}
 		};
+		
+		$scope.register = {
+			submit: function () {
+				user.register($scope.register, function () {
+					$rootScope.goTo('home');
+				});
+			}
+		};
 	});
